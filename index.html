@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video Downloader Mini App</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <!-- Monetag SDK -->
+    <script src='//libtl.com/sdk.js' data-zone='10957041' data-sdk='show_10957041'></script>
+    
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 20px; background: #fdfdfd; color: #333; }
+        .container { margin-top: 50px; }
+        .btn { background: #24a1de; color: white; padding: 15px 30px; border: none; border-radius: 12px; cursor: pointer; font-size: 18px; font-weight: bold; width: 90%; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        #downloadArea { display: none; margin-top: 20px; padding: 20px; border: 2px dashed #24a1de; border-radius: 10px; background: #e3f2fd; }
+        .status-msg { font-size: 14px; color: #666; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>📥 Video Taiyar Hai!</h3>
+        <p class="status-msg">Video link hasil karne ke liye ad mukammal dekhein.</p>
+        
+        <!-- Button jo ad shuru karega -->
+        <button id="adBtn" class="btn" onclick="startAd()">WATCH AD TO DOWNLOAD</button>
+
+        <!-- Ye hissa tab dikhega jab user ad dekh lega -->
+        <div id="downloadArea">
+            <p style="color: green; font-weight: bold;">✅ Shukriya! Link Unlocked.</p>
+            <p>Aapki video niche wale button se download ho jayegi:</p>
+            <button class="btn" style="background: #4caf50;" onclick="window.open('https://google.com')">DOWNLOAD NOW</button>
+        </div>
+    </div>
+
+    <script>
+        const tele = window.Telegram.WebApp;
+        tele.ready();
+        tele.expand();
+
+        function startAd() {
+            // Monetag Rewarded Interstitial
+            show_10957041().then(() => {
+                // Jab user ad poora dekh le:
+                document.getElementById('adBtn').style.display = 'none';
+                document.getElementById('downloadArea').style.display = 'block';
+            }).catch(e => {
+                alert('Ad load nahi ho saka. Meherbaani karke VPN check karein ya page refresh karein.');
+            });
+        }
+    </script>
+</body>
+</html>
