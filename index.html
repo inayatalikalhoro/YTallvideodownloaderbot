@@ -5,30 +5,55 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
     <!-- Monetag SDK -->
     <script src='//libtl.com/sdk.js' data-zone='10957041' data-sdk='show_10957041'></script>
     
     <style>
-        body { font-family: sans-serif; text-align: center; padding: 20px; background: #fdfdfd; color: #333; }
-        .container { margin-top: 50px; }
-        .btn { background: #24a1de; color: white; padding: 15px 30px; border: none; border-radius: 12px; cursor: pointer; font-size: 18px; font-weight: bold; width: 90%; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        #downloadArea { display: none; margin-top: 20px; padding: 20px; border: 2px dashed #24a1de; border-radius: 10px; background: #e3f2fd; }
-        .status-msg { font-size: 14px; color: #666; margin-bottom: 10px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; padding: 20px; background: #f4f7f9; color: #333; }
+        .container { margin-top: 30px; background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        h3 { color: #24a1de; margin-bottom: 10px; }
+        .status-msg { font-size: 14px; color: #666; margin-bottom: 25px; line-height: 1.5; }
+        
+        .btn { 
+            display: block; width: 100%; padding: 15px; margin-bottom: 12px; 
+            border: none; border-radius: 12px; cursor: pointer; 
+            font-size: 16px; font-weight: bold; color: white;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+        .btn:active { transform: scale(0.98); }
+        
+        #adBtn { background: linear-gradient(135deg, #24a1de, #0088cc); }
+        
+        #downloadArea { display: none; margin-top: 20px; border-top: 2px solid #eee; pt-20px; }
+        .success-badge { color: #28a745; font-weight: bold; margin-bottom: 15px; display: block; }
+        
+        /* Platform Specific Colors */
+        .btn-y2 { background: #ff0000; } /* YouTube Style */
+        .btn-tk { background: #010101; } /* TikTok Style */
+        .btn-fb { background: #1877F2; } /* FB Style */
+        
+        .footer-note { font-size: 11px; color: #999; margin-top: 20px; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h3>📥 Video Taiyar Hai!</h3>
-        <p class="status-msg">Video link hasil karne ke liye ad mukammal dekhein.</p>
+        <h3>📥 Video Processor</h3>
+        <p class="status-msg">Aapka link process ho chuka hai.<br>Download buttons on karne ke liye niche wala ad mukammal dekhein.</p>
         
-        <!-- Button jo ad shuru karega -->
-        <button id="adBtn" class="btn" onclick="startAd()">WATCH AD TO DOWNLOAD</button>
+        <!-- Step 1: Show Ad Button -->
+        <button id="adBtn" class="btn" onclick="startAd()">🔓 WATCH AD TO UNLOCK LINKS</button>
 
-        <!-- Ye hissa tab dikhega jab user ad dekh lega -->
+        <!-- Step 2: Show Actual Downloaders (Hidden by default) -->
         <div id="downloadArea">
-            <p style="color: green; font-weight: bold;">✅ Shukriya! Link Unlocked.</p>
-            <p>Aapki video niche wale button se download ho jayegi:</p>
-            <button class="btn" style="background: #4caf50;" onclick="window.open('https://google.com')">DOWNLOAD NOW</button>
+            <span class="success-badge">✅ Links Unlocked!</span>
+            <p style="font-size: 13px; margin-bottom: 15px;">Kisi bhi button par click karein aur apna link paste karke video save karein:</p>
+            
+            <button class="btn btn-y2" onclick="window.open('https://y2mate.is/')">YouTube / All-in-One</button>
+            <button class="btn btn-tk" onclick="window.open('https://ssstik.io/')">TikTok (No Watermark)</button>
+            <button class="btn btn-fb" onclick="window.open('https://fdown.net/')">Facebook Downloader</button>
+            
+            <p class="footer-note">Note: Ad dekhne se humein bot ko free rakhne mein madad milti hai. Shukriya!</p>
         </div>
     </div>
 
@@ -38,13 +63,13 @@
         tele.expand();
 
         function startAd() {
-            // Monetag Rewarded Interstitial
+            // Monetag Rewarded Interstitial Call
             show_10957041().then(() => {
-                // Jab user ad poora dekh le:
+                // Jab user ad poora dekh le
                 document.getElementById('adBtn').style.display = 'none';
                 document.getElementById('downloadArea').style.display = 'block';
             }).catch(e => {
-                alert('Ad load nahi ho saka. Meherbaani karke VPN check karein ya page refresh karein.');
+                alert('Ad load nahi ho saka. Meherbaani karke page refresh karein ya VPN check karein.');
             });
         }
     </script>
