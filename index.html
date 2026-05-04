@@ -25,13 +25,12 @@
         
         #adBtn { background: linear-gradient(135deg, #24a1de, #0088cc); }
         
-        #downloadArea { display: none; margin-top: 20px; border-top: 2px solid #eee; pt-20px; }
+        #downloadArea { display: none; margin-top: 20px; border-top: 2px solid #eee; padding-top: 20px; }
         .success-badge { color: #28a745; font-weight: bold; margin-bottom: 15px; display: block; }
         
-        /* Platform Specific Colors */
-        .btn-y2 { background: #ff0000; } /* YouTube Style */
-        .btn-tk { background: #010101; } /* TikTok Style */
-        .btn-fb { background: #1877F2; } /* FB Style */
+        .btn-y2 { background: #ff0000; }
+        .btn-tk { background: #010101; }
+        .btn-fb { background: #1877F2; }
         
         .footer-note { font-size: 11px; color: #999; margin-top: 20px; }
     </style>
@@ -39,21 +38,19 @@
 <body>
     <div class="container">
         <h3>📥 Video Processor</h3>
-        <p class="status-msg">Aapka link process ho chuka hai.<br>Download buttons on karne ke liye niche wala ad mukammal dekhein.</p>
+        <p class="status-msg">Your link has been processed.<br>Please watch a short ad to unlock your download links.</p>
         
-        <!-- Step 1: Show Ad Button -->
         <button id="adBtn" class="btn" onclick="startAd()">🔓 WATCH AD TO UNLOCK LINKS</button>
 
-        <!-- Step 2: Show Actual Downloaders (Hidden by default) -->
         <div id="downloadArea">
             <span class="success-badge">✅ Links Unlocked!</span>
-            <p style="font-size: 13px; margin-bottom: 15px;">Kisi bhi button par click karein aur apna link paste karke video save karein:</p>
+            <p style="font-size: 13px; margin-bottom: 15px;">Click any button below and paste your link to save the video:</p>
             
-            <button class="btn btn-y2" onclick="window.open('https://y2mate.is/')">YouTube / All-in-One</button>
+            <button class="btn btn-y2" onclick="window.open('https://y2mate.is/')">YouTube Downloader</button>
             <button class="btn btn-tk" onclick="window.open('https://ssstik.io/')">TikTok (No Watermark)</button>
             <button class="btn btn-fb" onclick="window.open('https://fdown.net/')">Facebook Downloader</button>
             
-            <p class="footer-note">Note: Ad dekhne se humein bot ko free rakhne mein madad milti hai. Shukriya!</p>
+            <p class="footer-note">Note: Ads help us keep this bot free for everyone. Thank you!</p>
         </div>
     </div>
 
@@ -63,13 +60,11 @@
         tele.expand();
 
         function startAd() {
-            // Monetag Rewarded Interstitial Call
             show_10957041().then(() => {
-                // Jab user ad poora dekh le
                 document.getElementById('adBtn').style.display = 'none';
                 document.getElementById('downloadArea').style.display = 'block';
             }).catch(e => {
-                alert('Ad load nahi ho saka. Meherbaani karke page refresh karein ya VPN check karein.');
+                alert('Failed to load ad. Please refresh or check your connection.');
             });
         }
     </script>
